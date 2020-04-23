@@ -1,0 +1,26 @@
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(Util.class)
+public class UtilTest {
+
+   @Test
+   public void testMethod() throws Exception {
+      
+      PowerMockito.stub(PowerMockito.method(Util.class, "method2")).toReturn("ReturnString");
+
+      String retrieved = Util.method1();
+
+      Assert.assertNotNull(retrieved);
+      Assert.assertEquals("abc", retrieved);
+   }
+}
+
+
+class Util {
+    public static String method1(){
+        return method2();
+    }
+
+    private static String method2() {
+        return "abc";
+    }
+}
